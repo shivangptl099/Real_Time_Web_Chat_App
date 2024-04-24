@@ -30,13 +30,13 @@ form.addEventListener('submit', (e) => {
 const name = prompt("Enter your name to join LetsChat");
 socket.emit('new-user-joined', name);
 
-// Event listeners for various Socket.IO events
 socket.on('user-joined', name => {
     append(`${name} joined the chat`, 'right');
 });
 
 socket.on('receive', data => {
     append(`${data.name}: ${data.message}`, 'left');
+    audio.play();
 });
 
 socket.on('left', name => {
